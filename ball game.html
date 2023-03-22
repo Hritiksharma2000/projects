@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="ball game.css">
+
+</head>
+
+<body>
+    <div>
+        your score =
+        <p id="score"></p>
+    </div>
+
+    <div class="ballf1" id="ballf1" onclick="hitball(event)"></div>
+    <div class="ballf2" id="ballf2" onclick="hitball(event)"></div>
+    <div class="ballf3" id="ballf3" onclick="hitball(event)"></div>
+    <div class="ballf4" id="ballf4" onclick="hitball(event)"></div>
+    <div class="ballf5" id="ballf5" onclick="hitball(event)"></div>
+    <div class="ballf6" id="ballf6" onclick="hitball(event)"></div>
+    <div class="ballf7" id="ballf7" onclick="hitball(event)"></div>
+    <div class="ballf8" id="ballf8" onclick="hitball(event)"></div>
+    <div class="ballf9" id="ballf9" onclick="hitball(event)"></div>
+    <div class="ballf10" id="ballf10" onclick="hitball(event)"></div>
+
+
+    <div class="w3-container">
+        <h2>Dynamic Progress Bar</h2>
+
+        <div class="w3-light-grey">
+            <div id="myBar" class="w3-green" style="height:24px;width:0; background-color:green;"></div>
+        </div>
+        <br>
+
+        <button class="w3-button w3-green" onclick="move()">Click Me</button>
+    </div>
+    <script>
+        var score = 0;
+
+        function hitball(e) {
+            console.log(e.target.id)
+            document.getElementById(e.target.id).style.display = "none";
+            score = score + 1;
+            document.getElementById("score").innerHTML = score;
+        }
+
+
+        function move() {
+            var elem = document.getElementById("myBar");
+            var width = 1;
+            var id = setInterval(frame, 1000);
+
+            function frame() {
+                if (score == 10) {
+                    clearInterval(id);
+                    document.getElementById("score").innerHTML = "you have won the game";
+                } else if (width == 100 && score < 10) {
+                    clearInterval(id);
+                    document.getElementById("score").innerHTML = "game over";
+                } else {
+                    width++;
+                    elem.style.width = width + '%';
+
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
